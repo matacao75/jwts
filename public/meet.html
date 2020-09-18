@@ -1,0 +1,70 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+</head>
+
+<body>
+
+
+  <script>
+    Object.defineProperty(window.navigator, 'userAgent', {
+      get: function () { return 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/80.0.3987.163 Chrome/80.0.3987.163 Safari/537.36'; }
+    });
+  function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+  }
+  </script>
+
+  <script src="https://jitsi.hospitalitaliano.org.ar/external_api.js"></script>
+
+  <script>
+    var tokenjwt = findGetParameter("jwt");
+    var room = findGetParameter("room");
+    var domain = "jitsi.hospitalitaliano.org.ar";
+    var options = {
+      disableAudioLevels: true,
+      roomName: room,
+      //width: 1240,
+      //height: 720,
+      parentNode: undefined,
+      jwt: tokenjwt,
+      configOverwrite: { startWithAudioMuted: true },
+      interfaceConfigOverwrite: {
+        filmStripOnly: false,
+        DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
+	SET_FILMSTRIP_ENABLED: false,
+	DISABLE_FOCUS_INDICATOR: true,
+	DISABLE_DOMINANT_SPEAKER_INDICATOR: true,
+	DISABLE_VIDEO_BACKGROUND: true,
+        TOOLBAR_BUTTONS: [
+        'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+        'hangup', 'profile', 'chat',
+        'etherpad', 'sharedvideo', 'settings', 'raisehand','filmstrip',
+        'videoquality', 'filmstrip', 
+        'tileview', 'help', 'mute-everyone', 'security'
+         ],
+      }
+    }
+    var api = new JitsiMeetExternalAPI(domain, options);
+    api.addEventListener('participantRoleChanged', function(event) {
+        if (event.role === "moderator") {
+                api.executeCommand('password', 'H0spital2020');
+        }
+    });
+    api.addEventListener('participantRoleChanged', function (event) {
+        if(event.role === "moderator") {
+                api.executeCommand('toggleLobby', true);
+        }
+    });
+    api.executeCommand('subject', 'Cliente Interno');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!--script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+<style type="text/css">
+body{
+    background-color:#5286F3;
+    font-size:14px;
+    color:#fff;
+}
+.simple-login-container{
+    width:300px;
+    max-width:100%;
+    margin:50px auto;
+}
+.simple-login-container h2{
+    text-align:center;
+    font-size:20px;
+}
+
+.simple-login-container .btn-login{
+    background-color:#FF5964;
+    color:#fff;
+}
+a{
+    color:#fff;
+}
+</style>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<div class="simple-login-container">
+    <h2>Acceso a Jitsi</h2>
+ 
+    <form id="form" action="/create1" method="POST">
+
+        <div class="row">
+
+            <div class="form-check">
+  		        <input class="form-check-input" type="radio" name="room" id="exampleRadios1" value="ClienteInterno" checked>
+  		        <label class="form-check-label" for="exampleRadios1"> Cliente Interno - Viernes 09:00 am
+  		        </label>
+	        </div>
+	        <div class="form-check">
+ 		        <input class="form-check-input" type="radio" name="room" id="exampleRadios2" value="ReunionDepartamentoDIS">
+ 		        <label class="form-check-label" for="exampleRadios2"> Reuni&oacuten de departamento DIS - Lunes 09 am
+  		        </label>
+	        </div>
+
+            <div class="col-md-12 form-group">
+                <input type="text" class="form-control" placeholder="Usuario Institucional" name="username">
+                <input type="hidden" name="moderator" value="true">
+                <input type="hidden" name="expira" value="60">
+	            <input type="hidden" name="avatar" value="https://robohash.org/john-doe">
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <input type="submit" class="btn btn-block btn-login" placeholder="Acceder" >
+        </div>
+    </div>
+    </form>
+</div>
+</body>
+</html>
